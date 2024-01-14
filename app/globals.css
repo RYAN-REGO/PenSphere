@@ -232,7 +232,7 @@ body {
 
 /* ========================================== CLERK STYLES */
 .cl-logoImage {
-  height: 38px;
+  height: 48px;
 }
 
 .cl-userButtonBox {
@@ -252,5 +252,14 @@ body {
 .cl-formButtonPrimary:active {
   background-color: #705CF7
 }
+
+/* .c1-avatarBox, .c1-userButtonBox{
+  height: 50px;
+  width: 50px;
+} */
+/* 
+.c1-avatarImage, .c1-userButttonAvatarImage{
+
+} */
 
 
