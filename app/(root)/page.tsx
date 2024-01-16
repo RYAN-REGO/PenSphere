@@ -15,7 +15,7 @@ export default function Home() {
       </section>
       <section className="w-[35%] min-h-screen bg-primary-20 border-l flex flex-col">
         <div className="w-full min-h-[55vh] border-b flex flex-col">
-          <div className="h-[65px] w-full flex items-center pl-7 tracking-wider text-md gap-1 font-semibold">
+          <div className="h-[65px] w-full flex items-center pl-7 tracking-wider text-[15px] gap-1 font-semibold">
             Trending Posts
             <Image
               src="/assets/icons/fire.svg"
@@ -29,7 +29,7 @@ export default function Home() {
           {/* //the posts will be mapped here */}
         </div>
         <div className="w-full h-full flex flex-col">
-          <div className="h-[65px] w-full flex items-center pl-7 tracking-wider text-md gap-1 font-semibold">
+          <div className="h-[65px] w-full flex items-center pl-7 tracking-wider text-[15px] gap-1 font-semibold">
             Recently Saved
             <Image
                 src='/assets/icons/save.svg'
