@@ -12,15 +12,18 @@ export default function Header()
                 <Link href='/'>
                     <p className="p-bold-24">LOGO</p>
                 </Link>
+                <Link href='/posts/create'>
                 <div className="flex border rounded-full py-2 px-5 bg-primary-10 gap-2 cursor-pointer text-[15px] items-center max-sm:hidden">
-                    <Image
+                        <Image
                         src = '/assets/icons/write.svg'
                         alt="w"
                         width={20}
                         height={20}
                     />
                     Write something
+
                 </div>
+                </Link>
                 <div className="flex gap-4 items-center">
                     <SignedIn>
                         <UserButton afterSignOutUrl="/"/>

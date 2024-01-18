@@ -228,6 +228,8 @@ body {
   .toggle-switch {
     @apply bg-gray-300 !important;
   }
+
+
 }
 
 /* ========================================== CLERK STYLES */
@@ -261,5 +263,6 @@ body {
 .c1-avatarImage, .c1-userButttonAvatarImage{
 
 } */
+
 
 
