@@ -84,6 +84,9 @@ body {
 
 /* ========================================== TAILWIND STYLES */
 @layer utilities {
+  .border-bottom{
+    @apply border-b-4
+  }
   .wrapper {
     @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
   }
@@ -114,6 +117,10 @@ body {
   /* 36 */
   .h3-bold {
     @apply font-bold text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
+  }
+
+  .h3-semibold {
+    @apply font-semibold text-[28px] leading-[28px] md:text-[30px] md:leading-[30px];
   }
 
   .h3-medium {
