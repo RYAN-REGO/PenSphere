@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Separator } from "../ui/separator";
+import Link from "next/link";
 
 const MobileNav = () => {
   return (
@@ -31,6 +32,7 @@ const MobileNav = () => {
           /> */}
           LOGO
           <Separator className="border border-gray-50" />
+          <Link href='/posts/create'>
           <div className="flex gap-3 tracking-wider bg-dotted-pattern py-4 w-full">
             <Image
               src="/assets/icons/write.svg"
@@ -40,6 +42,7 @@ const MobileNav = () => {
             />
             Write something
           </div>
+          </Link>
         </SheetContent>
       </Sheet>
     </nav>

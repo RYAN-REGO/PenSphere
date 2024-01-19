@@ -21,7 +21,6 @@ export default function Header()
                         height={20}
                     />
                     Write something
-
                 </div>
                 </Link>
                 <div className="flex gap-4 items-center">
