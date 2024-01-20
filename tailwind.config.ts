@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+//uploadthing config
 import { withUt } from 'uploadthing/tw';
 
 module.exports = withUt({
