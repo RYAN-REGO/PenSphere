@@ -8,6 +8,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input"
 import { PostFormSchema } from "@/lib/validator";
 import { PostDefaultValues } from "@/constants";
+import Dropdown from "./Dropdown";
 
 type PostFormProps = {
   userId: string;
@@ -33,7 +34,9 @@ const PostForm = ({ userId, type }: PostFormProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center gap-5">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center gap-10">
+
+        {/* title of the post */}
         <div className="w-[800px] max-sm:w-full">
         <FormField
           control={form.control}
@@ -41,13 +44,32 @@ const PostForm = ({ userId, type }: PostFormProps) => {
           render={({ field }) => (
             <FormItem className="max-sm:w-full">
               <FormControl>
-                <Input placeholder="Post title" {...field} className="border-b h-[80px] text-[20px] font-semibold tracking-wider"/>
+                <Input placeholder="Post title" {...field} className="p-5 vertical-center border-b h-[80px] text-[20px] font-semibold tracking-wider"/>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         </div>
+
+        {/* title of the post */}
+
+        {/* category of the post */}
+        <div className="w-[800px] max-sm:w-full">
+        <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => (
+            <FormItem className="max-sm:w-full">
+              <FormControl>
+                <Dropdown onChangeHandler = {field.onChange} value={field.value}/>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        </div>
+        {/* category of the post */}
         <Button type="submit">Submit</Button>
       </form>
     </Form>

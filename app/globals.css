@@ -85,7 +85,16 @@ body {
 /* ========================================== TAILWIND STYLES */
 @layer utilities {
   .border-bottom{
-    @apply border-b-4
+    @apply border-b-4;
+  }
+
+  .vertical-center{
+    @apply flex items-center;
+  }
+
+  .horizontal-center
+  {
+    @apply flex justify-center;
   }
   .wrapper {
     @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
