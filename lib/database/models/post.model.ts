@@ -6,7 +6,7 @@ export interface IPost extends Document{
     description : string;
     createdAt : Date;
     imageUrl : string;
-    category : {_id : string, name : string};
+    category : {_id : string, name : string[]};
     creator : {_id : string, firstName : string, lastName : string};
 }
 

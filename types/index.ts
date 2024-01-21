@@ -13,3 +13,7 @@ export type UpdateUserParams = {
     username : string
     photo : string
 }
+
+export type createCategoryParams = {
+    categoryName : string
+}

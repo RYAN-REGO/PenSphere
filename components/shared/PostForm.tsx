@@ -27,8 +27,7 @@ type PostFormProps = {
 };
 
 const PostForm = ({ userId, type }: PostFormProps) => {
-
-    const [files, setFiles] = useState<File[]>([])
+  const [files, setFiles] = useState<File[]>([]);
   const initialValues = PostDefaultValues;
   // 1. Define your form.
   const form = useForm<z.infer<typeof PostFormSchema>>({
@@ -74,7 +73,7 @@ const PostForm = ({ userId, type }: PostFormProps) => {
         <div className="w-[800px] max-sm:w-full">
           <FormField
             control={form.control}
-            name="title"
+            name="categoryId"
             render={({ field }) => (
               <FormItem className="max-sm:w-full text-[15px]">
                 <FormControl>
@@ -94,13 +93,14 @@ const PostForm = ({ userId, type }: PostFormProps) => {
         <div className="w-[800px] max-sm:w-full">
           <FormField
             control={form.control}
-            name="title"
+            name="description"
             render={({ field }) => (
               <FormItem className="max-sm:w-full">
                 <FormControl>
-                  <Textarea
+                <Textarea
                     placeholder="Description"
                     className="tracking-wider font-[16px] h-[50vh] rounded-2xl"
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
@@ -112,25 +112,33 @@ const PostForm = ({ userId, type }: PostFormProps) => {
 
         {/* upload the file */}
         <div className="w-[800px] max-sm:w-full">
-        <FormField
-          control={form.control}
-          name="imageUrl"
-          render={({ field }) => (
-            <FormItem className="max-sm:w-full">
-              <FormControl>
-                <FileUploader
-                onFieldChange = {field.onChange}
-                imageUrl={field.value}
-                setFiles={setFiles}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="imageUrl"
+            render={({ field }) => (
+              <FormItem className="max-sm:w-full">
+                <FormControl>
+                  <FileUploader
+                    onFieldChange={field.onChange}
+                    imageUrl={field.value}
+                    setFiles={setFiles}
+                  />
+                </FormControl>
+                <FormMessage/>
+              </FormItem>
+            )}
+          />
         </div>
         {/* upload the file */}
-        <Button type="submit">Submit</Button>
+        <div className="w-[800px] max-sm:w-full">
+          <Button
+            type="submit"
+            disabled={form.formState.isSubmitting}
+            className="button col-span-2 w-full rounded-none "
+          >
+            {form.formState.isSubmitting ? "Submitting.." : `${type} post`}
+          </Button>
+        </div>
       </form>
     </Form>
   );

@@ -16,7 +16,7 @@ const UpdateEvent = () => {
         </section>
 
         <div className="wrapper my-8">
-          <PostForm userId={userId} type="Create"/>
+          <PostForm userId={userId} type="Update"/>
         </div>
       </>
     </main>

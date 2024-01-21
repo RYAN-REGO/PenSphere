@@ -234,7 +234,7 @@ body {
   }
 
   .button {
-    @apply rounded-full h-[54px] p-regular-16;
+    @apply rounded-[15px] h-[54px] p-regular-16;
   }
 
   .select-item {
