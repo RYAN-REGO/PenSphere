@@ -20,6 +20,9 @@ import { PostDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
 import { FileUploader } from "./FileUploader";
+import { useUploadThing } from "@/lib/uploadthing";
+import { useRouter } from "next/navigation";
+import { createPost } from "@/lib/actions/post.actions";
 
 type PostFormProps = {
   userId: string;
@@ -29,6 +32,8 @@ type PostFormProps = {
 const PostForm = ({ userId, type }: PostFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const initialValues = PostDefaultValues;
+  const {startUpload} = useUploadThing('imageUploader');
+  const router = useRouter();
   // 1. Define your form.
   const form = useForm<z.infer<typeof PostFormSchema>>({
     resolver: zodResolver(PostFormSchema),
@@ -36,10 +41,39 @@ const PostForm = ({ userId, type }: PostFormProps) => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof PostFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof PostFormSchema>) {
+
+    let uploadedImageUrl = values.imageUrl;
+
+    if(files.length > 0)
+    {
+      const uploadedImages = await startUpload(files);
+
+      if(!uploadedImages){
+        return;
+      }
+
+      uploadedImageUrl = uploadedImages[0].url;
+      }
     console.log(values);
+
+    if(type === 'Create')
+    {
+      try {
+        const newPost = await createPost({
+          post : {...values, imageUrl : uploadedImageUrl },
+          userId,
+          path : '/profile'
+        })
+
+        if(newPost){
+          form.reset();
+          router.push(`/posts/${newPost._id}`);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   return (
