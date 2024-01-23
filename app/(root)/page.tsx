@@ -1,7 +1,18 @@
+import Collection from "@/components/shared/Collection";
 import { Separator } from "@/components/ui/separator";
+import { getAllPosts } from "@/lib/actions/post.actions";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
+
+  const posts = await getAllPosts({
+    query : '',
+    category : '',
+    page : 1,
+    limit : 6,
+  })
+
+  console.log(posts);
   return (
     <main className="w-full min-h-screen flex max-sm:flex-col">
       <section className="w-[65%] min-h-[200vh] border-r flex-col">
@@ -11,7 +22,17 @@ export default function Home() {
           </div>
         </div>
         {/* <Separator className="sticky top-0"/> */}
-        <div className="h-full"></div>
+        <div className="h-full w-full horizontal-center">
+          <Collection
+            data = {posts?.data}
+            emptyTitle = "No Posts Found"
+            emptyStateSubtext = "Come back later"
+            collectionType = "All_Posts"
+            limit = {6}
+            page = {1}
+            totalPages = {2}
+          />
+        </div>
       </section>
       <section className="w-[35%] min-h-screen bg-primary-20 border-l flex flex-col">
         <div className="w-full min-h-[55vh] border-b flex flex-col">

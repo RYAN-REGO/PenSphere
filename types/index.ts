@@ -34,6 +34,13 @@ export type createPostParams = {
     path: string
   }
 
+  export type GetAllPostsParams = {
+    query: string
+    category: string
+    limit: number
+    page: number
+  }
+
   // ------ URL QUERY PARAMS
   export type SearchParamProps = {
     params: { id: string }

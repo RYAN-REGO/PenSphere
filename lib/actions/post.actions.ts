@@ -1,7 +1,7 @@
 "use server"
 
 
-import { createPostParams } from "@/types";
+import { GetAllPostsParams, createPostParams } from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database";
 import Post from "../database/models/post.model";
@@ -52,6 +52,32 @@ export const getPostById = async (postId : string) => {
         }
 
         return JSON.parse(JSON.stringify(post));
+    } catch (error) {
+        handleError(error);
+    }
+}
+
+export const getAllPosts = async({query, limit = 6, page, category} : GetAllPostsParams) => {
+    try {
+        await connectToDatabase();
+
+        const conditions = {};
+
+        const postsQuery = Post.find(conditions)
+        .sort({createdAt : 'desc'})
+        .skip(0)
+        .limit(limit);
+
+        const posts = await populatePost(postsQuery);
+
+        const postsCount =  await Post.countDocuments(conditions);
+
+
+        return {
+            data : JSON.parse(JSON.stringify(posts)),
+            postCount : postsCount,
+            totalPages : Math.ceil(postsCount / limit),
+        }
     } catch (error) {
         handleError(error);
     }

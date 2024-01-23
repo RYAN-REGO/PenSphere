@@ -1,7 +1,7 @@
 import PostForm from "@/components/shared/PostForm";
 import { auth } from "@clerk/nextjs";
 
-const CreateEvent = () => {
+const CreatePost = () => {
   const { sessionClaims } = auth();
 
   const userId = sessionClaims?.userId as string;
@@ -23,4 +23,4 @@ const CreateEvent = () => {
   );
 };
 
-export default CreateEvent;
+export default CreatePost;

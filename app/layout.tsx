@@ -8,7 +8,7 @@ const fontSans = FontSans({
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
 });
-
+    
 export const metadata: Metadata = {
   title: "Medium Clone",
   description: "Share your knowledge",
