@@ -4,6 +4,12 @@ import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { DeleteConfirmation } from "./DeleteConfirmation";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type CardProps = {
   post: IPost; // Use colon instead of equals sign // caused an error
@@ -39,6 +45,7 @@ const Card = ({ post }: CardProps) => {
             {post.creator.firstName} {post.creator.lastName}
           </p>
         </div>
+
         {/* date display */}
         <div className="vertical-center text-[14px] font-lora">
           {formatDateTime(post.createdAt).dateOnly}
@@ -75,35 +82,63 @@ const Card = ({ post }: CardProps) => {
           <div className="text-[14px] h-full vertical-center">{`${readTime} min read`}</div>
         </div>
         <div className="flex gap-5">
-          <Image
-            src="/assets/icons/like.svg"
-            alt="user"
-            width={17}
-            height={17}
-          />
-          <Image
-            src="/assets/icons/savePost.svg"
-            alt="user"
-            width={17}
-            height={17}
-          />
-          {isPostCreator && (
-            <Link
-              href={`/posts/${post._id}/update`}
-              className="vertical-center"
-            >
-              <Image
-                src="/assets/icons/edit.svg"
-                alt="edit"
-                width={19}
-                height={20}
-              />
-            </Link>
-          )}
-          {isPostCreator && (
-            <DeleteConfirmation postId = {post._id}/>
-          )}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Image
+                  src="/assets/icons/like.svg"
+                  alt="user"
+                  width={17}
+                  height={17}
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Like this post</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
 
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Image
+                  src="/assets/icons/savePost.svg"
+                  alt="user"
+                  width={17}
+                  height={17}
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Save this post</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <div className="flex gap-4 max-sm:hidden">
+            {isPostCreator && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Link
+                      href={`/posts/${post._id}/update`}
+                      className="vertical-center max-sm:hidden"
+                    >
+                      <Image
+                        src="/assets/icons/edit.svg"
+                        alt="edit"
+                        width={19}
+                        height={20}
+                      />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Update this post</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+            {isPostCreator && <DeleteConfirmation postId={post._id} />}
+          </div>
         </div>
       </div>
     </div>
