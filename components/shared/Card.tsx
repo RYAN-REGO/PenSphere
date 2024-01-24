@@ -8,10 +8,19 @@ type CardProps = {
 };
 
 const Card = ({ post }: CardProps) => {
+
+    function calculateReadingTime(para : string) {
+        const wordCount = para.split(/\s+/).length;
+        const readingTimeMinutes = Math.ceil(wordCount / 200);
+      
+        return readingTimeMinutes;
+    }
+
+    const readTime = calculateReadingTime(post.description)
     return (
         <div className=' min-h-[280px] max-sm:min-h-[250px] w-[85%] overflow-hidden border-b transition-all hover:shadow-ld mt-[40px] flex-col max-sm:w-[92%]'>
             {/* header */}
-            <div className="w-full h-[15%] flex justify-between">
+            <div className="w-full h-[10%] flex justify-between">
                 {/* profile photo, name, description in small*/}
                 <div className="flex gap-2 vertical-center">
                     <Image
@@ -48,7 +57,26 @@ const Card = ({ post }: CardProps) => {
                 </div>
             </div>
             
-            <div className="bg-primary-500 w-full h-[15%]"></div>
+            <div className="w-full h-[15%] flex justify-between">
+                <div className="flex gap-5">
+                <div className="bg-grey-25 rounded-lg text-[13px] text-center min-h-[20px] px-2 py-1 h-[40px] vertical-center">{post.category.name}</div>
+                <div className="text-[14px] h-full vertical-center">{`${readTime} min read`}</div>
+                </div>
+                <div className="flex gap-5">
+                <Image
+                        src='/assets/icons/like.svg'
+                        alt='user'
+                        width={17}
+                        height={17}
+                    />
+                <Image
+                        src='/assets/icons/savePost.svg'
+                        alt='user'
+                        width={17}
+                        height={17}
+                    />
+                </div>
+            </div>
         </div>
         
     );
