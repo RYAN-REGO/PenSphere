@@ -7,12 +7,13 @@ type CardProps = {
 
 const Card = ({ post }: CardProps) => {
     return (
-        <div className=' min-h-[280px]  w-[85%] overflow-hidden border-b transition-all hover:shadow-ld mt-[40px] flex-col max-sm:w-[92%]'>
+        <div className=' min-h-[280px] max-sm:min-h-[250px] w-[85%] overflow-hidden border-b transition-all hover:shadow-ld mt-[40px] flex-col max-sm:w-[92%]'>
             <div className="bg-primary-500 w-full h-[15%] flex justify-between"></div>
-            <Link href={`/posts/${post._id}`}>
+            
             <div className="w-full h-[70%] flex flex-row">
                 {/* title and description */}
-                <div className="w-[69%] h-full flex flex-col gap-2">
+                <Link href={`/posts/${post._id}`}>
+                <div className="w-[96%] h-full flex flex-col gap-2 max-sm:w-[93%]">
                     <div className="text-[20px] font-bold min-h-[24px] mt-3 font-notoSans tracking-wide line-clamp-2">
                         {post.title}
                     </div>
@@ -20,11 +21,17 @@ const Card = ({ post }: CardProps) => {
                         {post.description}
                     </p>
                 </div>
-
+                </Link>
                 {/* IMAGE */}
-                <div className="w-[30%] h-full"></div>
+                <div className="min-w-[30%] h-full horizontal-center">
+                    <Link
+                        href={`/posts/${post._id}`}
+                        style={{backgroundImage : `url(${post.imageUrl})`}}
+                        className='flex-center flex-grow bg-cover bg-center w-[90%] h-[75%] transition-all duration-300 mt-6'
+                    />
+                </div>
             </div>
-            </Link>
+            
             <div className="bg-primary-500 w-full h-[15%]"></div>
         </div>
         
