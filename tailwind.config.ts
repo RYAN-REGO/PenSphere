@@ -72,7 +72,10 @@ module.exports = withUt({
       fontFamily: {
         sans: ['var(--font-sans)'],
         notoSans : ['Noto Sans JP', 'sans-serif'],
-        mulish : ['Mulish', 'sans-serif']
+        mulish : ['Mulish', 'sans-serif'],
+        playFairDisplay : ['Playfair Display', 'serif'],
+        slabo : ['Slabo 13px', 'serif'],
+        lora : ['Lora', 'serif']
       },
       backgroundImage: {
         'dotted-pattern': "url('/assets/images/dotted-pattern.png')",

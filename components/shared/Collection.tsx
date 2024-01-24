@@ -1,6 +1,7 @@
 import { IPost } from '@/lib/database/models/post.model'
 import Image from 'next/image'
 import React from 'react'
+import Card from './Card'
 
 type CollectionProps = {
     data : IPost[],
@@ -16,9 +17,17 @@ type CollectionProps = {
 const Collection = ({data, emptyTitle, emptyStateSubtext, collectionType, limit, page, totalPages} : CollectionProps) => {
   return (
     <>{
-        data.length > 2 ? (
-            <div className="">
-                {data[0].title}
+        data.length > 0 ? (
+            <div className="flex flex-col gap-10 w-full">
+                <ul className='grid grid-cols-1 gap-3 w-full justify-center'>
+                    {data.map((post) => {
+                        return(
+                            <li key={post._id} className='flex justify-center'> 
+                                <Card post={post}/>
+                            </li>
+                        )
+                    })}
+                </ul>
             </div>
         ) : (
             <div className="flex flex-col gap-5 w-full h-[50vh] flex-center">

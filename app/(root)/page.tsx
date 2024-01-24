@@ -15,7 +15,7 @@ export default async function Home() {
   console.log(posts);
   return (
     <main className="w-full min-h-screen flex max-sm:flex-col">
-      <section className="w-[65%] min-h-[200vh] border-r flex-col">
+      <section className="w-[65%] min-h-[200vh] border-r flex-col max-sm:w-full">
         <div className="z-40 h-[65px] w-full flex-center sticky top-0">
           <div className="h-full w-[85%] flex underline underline-offset-[5px] items-center border-b bg-white">
             For you
@@ -34,7 +34,7 @@ export default async function Home() {
           />
         </div>
       </section>
-      <section className="w-[35%] min-h-screen bg-primary-20 border-l flex flex-col">
+      <section className="w-[35%] min-h-screen bg-primary-20 border-l flex flex-col max-sm:w-0">
         <div className="w-full min-h-[55vh] border-b flex flex-col">
           <div className="h-[65px] w-full flex items-center pl-7 tracking-wider text-[15px] gap-1 font-semibold">
             Trending Posts
