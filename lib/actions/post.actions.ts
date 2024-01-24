@@ -1,12 +1,13 @@
 "use server"
 
 
-import { GetAllPostsParams, createPostParams } from "@/types";
+import { DeletePostParams, GetAllPostsParams, UpdatePostProps, createPostParams } from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database";
 import Post from "../database/models/post.model";
 import User from "../database/models/user.model";
 import Category from "../database/models/category.model";
+import { revalidatePath } from "next/cache";
 
 const populatePost = async(query : any) => {
     return query
@@ -82,3 +83,37 @@ export const getAllPosts = async({query, limit = 6, page, category} : GetAllPost
         handleError(error);
     }
 }
+
+export const deletePost = async ({postId, path} : DeletePostParams) => {
+    try {
+        await connectToDatabase();
+
+        const deletedPost = await Post.findByIdAndDelete(postId);
+
+        if(deletedPost) revalidatePath(path);
+    } catch (error) {
+        handleError(error);
+    }
+}
+
+export const updatePost = async ({ userId, post, path }: UpdatePostProps) => {
+    try {
+      await connectToDatabase()
+  
+      const postToUpdate = await Post.findById(post._id)
+      if (!postToUpdate || postToUpdate.creator.toHexString() !== userId) {
+        throw new Error('Unauthorized or event not found')
+      }
+  
+      const updatedPost = await Post.findByIdAndUpdate(
+        post._id,
+        { ...post, category: post.categoryId },
+        { new: true }
+      )
+      revalidatePath(path)
+  
+      return JSON.parse(JSON.stringify(updatedPost))
+    } catch (error) {
+      handleError(error)
+    }
+  }

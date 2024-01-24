@@ -41,6 +41,23 @@ export type createPostParams = {
     page: number
   }
 
+  export type DeletePostParams = {
+    postId : string
+    path : string
+  }
+
+
+  export type UpdatePostProps = {
+    userId : string
+    post : {
+      _id : string
+      title : string
+      description : string
+      imageUrl : string
+      categoryId : string
+    }
+    path : string
+  }
   // ------ URL QUERY PARAMS
   export type SearchParamProps = {
     params: { id: string }

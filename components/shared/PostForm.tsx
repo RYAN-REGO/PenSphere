@@ -22,17 +22,23 @@ import { useState } from "react";
 import { FileUploader } from "./FileUploader";
 import { useUploadThing } from "@/lib/uploadthing";
 import { useRouter } from "next/navigation";
-import { createPost } from "@/lib/actions/post.actions";
+import { createPost, updatePost } from "@/lib/actions/post.actions";
+import { IPost } from "@/lib/database/models/post.model";
 
 type PostFormProps = {
   userId: string;
   type: "Create" | "Update";
+  post?: IPost;
+  postId?: string;
 };
 
-const PostForm = ({ userId, type }: PostFormProps) => {
+const PostForm = ({ userId, type, post, postId }: PostFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
-  const initialValues = PostDefaultValues;
-  const {startUpload} = useUploadThing('imageUploader');
+  const initialValues =
+    post && type === "Update"
+      ? { ...post, createdAt: new Date() }
+      : PostDefaultValues;
+  const { startUpload } = useUploadThing("imageUploader");
   const router = useRouter();
   // 1. Define your form.
   const form = useForm<z.infer<typeof PostFormSchema>>({
@@ -41,32 +47,31 @@ const PostForm = ({ userId, type }: PostFormProps) => {
   });
 
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof PostFormSchema>) {
 
+  // very very very very important
+  async function onSubmit(values: z.infer<typeof PostFormSchema>) {
     let uploadedImageUrl = values.imageUrl;
 
-    if(files.length > 0)
-    {
+    if (files.length > 0) {
       const uploadedImages = await startUpload(files);
 
-      if(!uploadedImages){
+      if (!uploadedImages) {
         return;
       }
 
       uploadedImageUrl = uploadedImages[0].url;
-      }
+    }
     console.log(values);
 
-    if(type === 'Create')
-    {
+    if (type === "Create") {
       try {
         const newPost = await createPost({
-          post : {...values, imageUrl : uploadedImageUrl },
+          post: { ...values, imageUrl: uploadedImageUrl },
           userId,
-          path : '/profile'
-        })
+          path: "/profile",
+        });
 
-        if(newPost){
+        if (newPost) {
           form.reset();
           router.push(`/posts/${newPost._id}`);
         }
@@ -74,7 +79,31 @@ const PostForm = ({ userId, type }: PostFormProps) => {
         console.log(error);
       }
     }
+
+    if(type === 'Update') {
+      if(!postId) {
+        router.back()
+        return;
+      }
+
+      try {
+        const updatedPost = await updatePost({
+          userId,
+          post: { ...values, imageUrl: uploadedImageUrl, _id: postId },
+          path: `/posts/${postId}`
+        })
+
+        if(updatedPost) {
+          form.reset();
+          router.push(`/posts/${updatedPost._id}`)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
+
+  //.............................-----------------------------------------////////////////////
 
   return (
     <Form {...form}>
@@ -131,7 +160,7 @@ const PostForm = ({ userId, type }: PostFormProps) => {
             render={({ field }) => (
               <FormItem className="max-sm:w-full">
                 <FormControl>
-                <Textarea
+                  <Textarea
                     placeholder="Description"
                     className="tracking-wider font-[16px] h-[50vh] rounded-2xl"
                     {...field}
@@ -158,7 +187,7 @@ const PostForm = ({ userId, type }: PostFormProps) => {
                     setFiles={setFiles}
                   />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />

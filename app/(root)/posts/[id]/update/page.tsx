@@ -1,10 +1,20 @@
 import PostForm from "@/components/shared/PostForm";
+import { getPostById } from "@/lib/actions/post.actions";
 import { auth } from "@clerk/nextjs";
 
-const UpdatePost = () => {
+type UpdatePostParams = {
+  params : {
+    id : string
+  }
+}
+
+const UpdatePost = async ({params : {id}} : UpdatePostParams) => {
   const { sessionClaims } = auth();
 
   const userId = sessionClaims?.userId as string;
+  const post = await getPostById(id);
+
+  //we have the userId and the post that has to be updated
 
   return (
     <main className="min-h-screen">
@@ -16,7 +26,11 @@ const UpdatePost = () => {
         </section>
 
         <div className="wrapper my-8">
-          <PostForm userId={userId} type="Update"/>
+          <PostForm 
+          userId={userId} 
+          type="Update"
+          post={post}
+          postId={post._id}/>
         </div>
       </>
     </main>
