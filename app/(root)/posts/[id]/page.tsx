@@ -18,8 +18,8 @@ const postDetails = async ({ params: { id } }: SearchParamProps) => {
   console.log(post);
   return (
     <main className="w-full min-h-screen flex-center">
-      <section className="w-[60%] min-h-screen mt-[40px] flex flex-col gap-2">
-        <div className="text-[42px] font-bold w-full horizontal-center font-lora">
+      <section className="w-[60%] min-h-screen mt-[40px] flex flex-col gap-2 max-sm:w-[90%]">
+        <div className="text-[42px] font-bold w-full horizontal-center font-lora max-sm:text-[32px]">
           {post.title}
         </div>
         <div className="h-[90px] w-full flex vertical-center gap-3 border-b">
