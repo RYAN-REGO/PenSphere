@@ -34,7 +34,7 @@ export default async function Home() {
           />
         </div>
       </section>
-      <section className="w-[35%] min-h-screen bg-primary-20 border-l flex flex-col max-sm:w-0">
+      <section className="w-[35%] min-h-screen bg-primary-10 border-l flex flex-col max-sm:w-0">
         <div className="w-full min-h-[55vh] border-b flex flex-col">
           <div className="h-[65px] w-full flex items-center pl-7 tracking-wider text-[15px] gap-1 font-semibold">
             Trending Posts
