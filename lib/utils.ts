@@ -1,9 +1,6 @@
 import { type ClassValue, clsx } from 'clsx'
 
 import { twMerge } from 'tailwind-merge'
-// import qs from 'query-string'
-
-// import { UrlQueryParams, RemoveUrlQueryParams } from '@/types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -11,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const formatDateTime = (dateString: Date) => {
   const dateTimeOptions: Intl.DateTimeFormatOptions = {
-    weekday: 'short', // abbreviated weekday name (e.g., 'Mon')
+    // weekday: 'short', // abbreviated weekday name (e.g., 'Mon')
     month: 'short', // abbreviated month name (e.g., 'Oct')
     day: 'numeric', // numeric day of the month (e.g., '25')
     hour: 'numeric', // numeric hour (e.g., '8')
@@ -20,7 +17,8 @@ export const formatDateTime = (dateString: Date) => {
   }
 
   const dateOptions: Intl.DateTimeFormatOptions = {
-    weekday: 'short', // abbreviated weekday name (e.g., 'Mon')
+    //we do not need thw weekday
+    // weekday: 'short', // abbreviated weekday name (e.g., 'Mon')
     month: 'short', // abbreviated month name (e.g., 'Oct')
     year: 'numeric', // numeric year (e.g., '2023')
     day: 'numeric', // numeric day of the month (e.g., '25')
@@ -56,36 +54,6 @@ export const formatPrice = (price: string) => {
 
   return formattedPrice
 }
-
-// export function formUrlQuery({ params, key, value }: UrlQueryParams) {
-//   const currentUrl = qs.parse(params)
-
-//   currentUrl[key] = value
-
-//   return qs.stringifyUrl(
-//     {
-//       url: window.location.pathname,
-//       query: currentUrl,
-//     },
-//     { skipNull: true }
-//   )
-// }
-
-// export function removeKeysFromQuery({ params, keysToRemove }: RemoveUrlQueryParams) {
-//   const currentUrl = qs.parse(params)
-
-//   keysToRemove.forEach(key => {
-//     delete currentUrl[key]
-//   })
-
-//   return qs.stringifyUrl(
-//     {
-//       url: window.location.pathname,
-//       query: currentUrl,
-//     },
-//     { skipNull: true }
-//   )
-// }
 
 export const handleError = (error: unknown) => {
   console.error(error)

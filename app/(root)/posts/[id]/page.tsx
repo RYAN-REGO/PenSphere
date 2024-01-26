@@ -58,10 +58,11 @@ const postDetails = async ({ params: { id } }: SearchParamProps) => {
           />
         </div>
         <div className="w-full min-h-[30vh] font-lora text-justify mt-7">
+        
           {post.description}
         </div>
-        <div className="w-full h-[15vh] flex gap-2">
-          <div className="bg-gray-100 min-w-[100px] h-[40px] flex-center line-clamp-1 rounded-2xl font-lora tracking-wider">
+        <div className="w-full h-[15vh] flex gap-2 mt-5">
+          <div className="bg-gray-100 min-w-[100px] h-[40px] flex-center line-clamp-1 rounded-2xl font-lora tracking-wider px-2">
             {post.category.name}
           </div>
         </div>
