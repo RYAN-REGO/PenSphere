@@ -43,6 +43,8 @@ const MobileNav = () => {
             Write something
           </div>
           </Link>
+
+          {/* trending topics and saved items to be shown here bottom */}
         </SheetContent>
       </Sheet>
     </nav>

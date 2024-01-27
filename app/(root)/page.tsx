@@ -27,7 +27,7 @@ export default async function Home() {
                 <p key={category._id} className="flex">{category.name}</p>
               ))}
           </div> */}
-          <div className="font-lora h-full w-[750px] text-[15px] flex underline underline-offset-[5px] items-center border-b bg-white">
+          <div className="font-lora h-full w-[730px] text-[15px] flex underline underline-offset-[5px] items-center border-b bg-white">
             <p>For you</p>
             {/* <div className="flex flex-row gap-10 flex-nowrap overflow-hidden w-[750px] h-full">
               {categories.length > 0 &&
