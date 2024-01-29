@@ -56,10 +56,10 @@ const Card = ({ post }: CardProps) => {
         {/* title and description */}
         <Link href={`/posts/${post._id}`}>
           <div className="w-[96%] h-full flex flex-col gap-2 max-sm:w-[93%]">
-            <div className="text-[20px] font-bold min-h-[24px] mt-3 font-lora tracking-wide line-clamp-2">
+            <div className="text-[20px] font-bold min-h-[24px] mt-3 font-lora tracking-wide line-clamp-2 max-sm:text-[18px]">
               {post.title}
             </div>
-            <p className="text-[16px] font-lora font-normal max-h-[100px] line-clamp-4 max-sm:line-clamp-3">
+            <p className="text-[16px] font-lora font-normal max-h-[100px] line-clamp-4 max-sm:line-clamp-3 max-sm:text-[15px]">
               {post.description}
             </p>
           </div>
