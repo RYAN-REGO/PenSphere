@@ -4,11 +4,11 @@
 🚀Leveraging the power of Next.js and TypeScript, PenSphere ensures a robust platform for the users to share knowledge.
 
 ## Tech Stack
--**Next.js**
--**TypeScript**
--**Clerk Auth**
--**Tailwind CSS**
--**MongoDB**
+- **Next.js**
+- **TypeScript**
+- **Clerk Auth**
+- **Tailwind CSS**
+- **MongoDB**
 
 ## Getting Started
 
