@@ -1,7 +1,9 @@
-#PenSphere
+##PenSphere
+![Screenshot (106)](https://github.com/RYAN-REGO/PenSphere/assets/105663938/49fa0bd4-49c4-4446-9ee7-48c206572c17)
+
 🚀Leveraging the power of Next.js and TypeScript, PenSphere ensures a robust platform for the users to share knowledge.
 
-#Tech Stack
+##Tech Stack
 -**Next.js**
 -**TypeScript**
 -**Clerk Auth**
